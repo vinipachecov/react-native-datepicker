@@ -30,21 +30,25 @@ const SUPPORTED_ORIENTATIONS = [
   "landscape-right"
 ];
 
-const DatePickerIcon = useMemo(
-  ({ showIcon, iconSource, customStyles, iconComponent }) => {
-    if (showIcon) {
-      if (iconComponent) {
-        return iconComponent;
-      }
-      return (
-        <Image
-          style={[Style.dateIcon, customStyles.dateIcon]}
-          source={iconSource}
-        />
-      );
+const DatePickerIcon = ({
+  showIcon,
+  iconSource,
+  customStyles,
+  iconComponent
+}) => {
+  if (showIcon) {
+    if (iconComponent) {
+      return iconComponent;
     }
+    return (
+      <Image
+        style={[Style.dateIcon, customStyles.dateIcon]}
+        source={iconSource}
+      />
+    );
   }
-);
+  return null;
+};
 
 class DatePicker extends Component {
   constructor(props) {
@@ -383,7 +387,6 @@ class DatePicker extends Component {
             iconSource={this.props.iconSource}
             customStyles={this.props.customStyles}
           />
-          {this._renderIcon()}
           {Platform.OS === "ios" && (
             <Modal
               transparent={true}
