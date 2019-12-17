@@ -9,7 +9,6 @@ import {
 import DatePicker from './datepicker.js';
 
 class datepicker extends Component {
-
   constructor(props) {
     super(props);
 
@@ -23,12 +22,18 @@ class datepicker extends Component {
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (e) => {console.log('onStartShouldSetPanResponder'); return true;},
-      onMoveShouldSetPanResponder: (e) => {console.log('onMoveShouldSetPanResponder'); return true;},
-      onPanResponderGrant: (e) => console.log('onPanResponderGrant'),
-      onPanResponderMove: (e) => console.log('onPanResponderMove'),
-      onPanResponderRelease: (e) => console.log('onPanResponderRelease'),
-      onPanResponderTerminate: (e) => console.log('onPanResponderTerminate')
+      onStartShouldSetPanResponder: e => {
+        console.log('onStartShouldSetPanResponder');
+        return true;
+      },
+      onMoveShouldSetPanResponder: e => {
+        console.log('onMoveShouldSetPanResponder');
+        return true;
+      },
+      onPanResponderGrant: e => console.log('onPanResponderGrant'),
+      onPanResponderMove: e => console.log('onPanResponderMove'),
+      onPanResponderRelease: e => console.log('onPanResponderRelease'),
+      onPanResponderTerminate: e => console.log('onPanResponderTerminate')
     });
   }
 
@@ -42,14 +47,15 @@ class datepicker extends Component {
           style={{width: 200}}
           date={this.state.date}
           mode="date"
+          androidMode="spinner"
           placeholder="placeholder"
           format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
           iconSource={require('./google_calendar.png')}
-          onDateChange={(date) => {this.setState({date: date});}}
+          onDateChange={date => {
+            this.setState({date: date});
+          }}
         />
         <Text style={styles.instructions}>date: {this.state.date}</Text>
         <DatePicker
@@ -60,7 +66,9 @@ class datepicker extends Component {
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
           minuteInterval={10}
-          onDateChange={(time) => {this.setState({time: time});}}
+          onDateChange={time => {
+            this.setState({time: time});
+          }}
         />
         <Text style={styles.instructions}>time: {this.state.time}</Text>
         <DatePicker
@@ -71,7 +79,9 @@ class datepicker extends Component {
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
           showIcon={false}
-          onDateChange={(datetime) => {this.setState({datetime: datetime});}}
+          onDateChange={datetime => {
+            this.setState({datetime: datetime});
+          }}
         />
         <Text style={styles.instructions}>datetime: {this.state.datetime}</Text>
         <DatePicker
@@ -93,9 +103,13 @@ class datepicker extends Component {
             }
           }}
           minuteInterval={10}
-          onDateChange={(datetime) => {this.setState({datetime1: datetime});}}
+          onDateChange={datetime => {
+            this.setState({datetime1: datetime});
+          }}
         />
-        <Text style={styles.instructions}>datetime: {this.state.datetime1}</Text>
+        <Text style={styles.instructions}>
+          datetime: {this.state.datetime1}
+        </Text>
       </View>
     );
   }

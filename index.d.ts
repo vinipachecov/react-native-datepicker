@@ -15,8 +15,8 @@ interface DatePickerProps {
   showIcon: boolean;
   onOpenModal: Function;
   onCloseModal: Function;
-  height?: any;
-  duration?: any;
+  height?: string | number;
+  duration?: number;
   iconSource?: any;
   iconComponent?: any;
   disabled?: boolean;
